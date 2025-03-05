@@ -1,0 +1,25 @@
+{
+  "name": "order_catalogue",
+  "version": "1.0.0",
+  "description": "CMPSC 421 lab to design, develop, and document RESTful API using Node.js and Express.js, with a focus on asynchronous programming and efficient data handling.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dylan-000/order_catalogue.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dylan-000/order_catalogue/issues"
+  },
+  "homepage": "https://github.com/dylan-000/order_catalogue#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.2",
+    "mongoose": "^8.12.0"
+  }
+}
