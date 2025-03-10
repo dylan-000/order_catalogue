@@ -1,8 +1,9 @@
 # Node.js-specific
-order_catalogue/node_modules/           # Dependencies
+node_modules/           # Dependencies
 npm-debug.log*        # npm debug log
 yarn-error.log*       # Yarn error log
 package-lock.json       # npm lock file
+package.json
 
 # System files
 .DS_Store             # macOS
@@ -11,6 +12,7 @@ Thumbs.db               # Windows
 # Environment files
 .env                    # Environment variables
 .env.*                 # More environment variables
+
 
 # Optional files
 coverage/               # Test coverage reports
