@@ -1,24 +1,3 @@
-# Node.js-specific
-node_modules/           # Dependencies
-npm-debug.log*        # npm debug log
-yarn-error.log*       # Yarn error log
-package-lock.json       # npm lock file
+node_modules
 package.json
-
-# System files
-.DS_Store             # macOS
-Thumbs.db               # Windows
-
-# Environment files
-.env                    # Environment variables
-.env.*                 # More environment variables
-
-
-# Optional files
-coverage/               # Test coverage reports
-dist/                   # Build output
-build/                  # Build output
-.cache                  # Cache files
-.npm                    # npm cache directory
-.eslintcache             # eslint cache
-.node_repl_history      # REPL history
+package-lock.json

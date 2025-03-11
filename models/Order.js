@@ -10,12 +10,12 @@ const orderSchema = new mongoose.Schema({
     },
 
     // Similarly, for each order we reference multiple productIDs from the Product model. Using the [] notation because there may be many products.
-    products:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-        required: true,
-        quantity: Number
-    }],
+    products: [
+        {
+            productID: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+            quantity: { type: Number, required: true, min: 1 } // Ensure quantity is at least 1
+        }
+    ],
 
     // Indicate the status of the order: pending, completed, or cancelled.
     status: {
