@@ -1,5 +1,6 @@
 const express = require('express');
 const Order = require('../models/Order');
+const Product = require('../models/Product');
 const router = express.Router();
 
 /**
@@ -11,7 +12,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /orders:
+ * /apis/orders:
  *   post:
  *     summary: Create a new order
  *     description: Places a new order by associating it with a customer and adding multiple products with their quantities.
@@ -26,7 +27,6 @@ const router = express.Router();
  *             required:
  *               - customerID
  *               - products
- *               - total
  *             properties:
  *               customerID:
  *                 type: string
@@ -55,10 +55,6 @@ const router = express.Router();
  *                 description: The current status of the order.
  *                 default: "pending"
  *                 example: "pending"
- *               total:
- *                 type: number
- *                 description: The total cost of the order.
- *                 example: 199.99
  *     responses:
  *       201:
  *         description: Order successfully created
@@ -105,6 +101,17 @@ const router = express.Router();
  */
 router.post('/orders', async (req, res) => {
     try {
+        let total = 0;
+        // Loop through each product to calculate total based on product price and quantity
+        for (const item of req.body.products) {
+            // Fetch product details (assumes a Product model exists)
+            const productDetails = await Product.findById(item.productID);
+            if (!productDetails) {
+                return res.status(400).json({ message: `Product with ID ${item.productID} not found` });
+            }
+            total += productDetails.price * item.quantity;
+        }
+        req.body.total = total;
         const newOrder = await Order.create(req.body);
         res.status(201).json(newOrder);
     } catch (err) {
@@ -114,7 +121,7 @@ router.post('/orders', async (req, res) => {
 
 /**
  * @swagger
- * /orders/{id}:
+ * /apis/orders/{id}:
  *   get:
  *     summary: Retrieve a single order
  *     description: Retrieve an order by its ID.
@@ -174,7 +181,7 @@ router.get('/orders/:id', async (req, res) => {
 
 /**
  * @swagger
- * /orders:
+ * /apis/orders:
  *   get:
  *     summary: Retrieve all orders
  *     description: Retrieve a list of all orders.
@@ -227,10 +234,10 @@ router.get('/orders', async (req, res) => {
 
 /**
  * @swagger
- * /orders/{id}:
+ * /apis/orders/{id}:
  *   put:
  *     summary: Update an existing order
- *     description: Update details of an existing order by its ID.
+ *     description: Update details of an existing order by its ID. The order total is recalculated based on product prices and quantities.
  *     tags:
  *       - Orders
  *     parameters:
@@ -294,6 +301,17 @@ router.get('/orders', async (req, res) => {
  */
 router.put('/orders/:id', async (req, res) => {
     try {
+        if (req.body.products) {
+            let total = 0;
+            for (const item of req.body.products) {
+                const productDetails = await Product.findById(item.productID);
+                if (!productDetails) {
+                    return res.status(400).json({ message: `Product with ID ${item.productID} not found` });
+                }
+                total += productDetails.price * item.quantity;
+            }
+            req.body.total = total;
+        }
         const updatedOrder = await Order.findByIdAndUpdate(
             req.params.id,
             req.body,
@@ -308,7 +326,7 @@ router.put('/orders/:id', async (req, res) => {
 
 /**
  * @swagger
- * /orders/{id}:
+ * /apis/orders/{id}:
  *   delete:
  *     summary: Delete an order
  *     description: Delete an existing order by its ID.

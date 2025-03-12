@@ -11,7 +11,7 @@ const Customer = require('../models/Customer');
 
 /**
  * @swagger
- * /customers:
+ * /apis/customers:
  *   post:
  *     summary: Create a new customer in the database.
  *     tags: [Customers]
@@ -47,7 +47,7 @@ const Customer = require('../models/Customer');
  *                   example: John
  *                 lastName:
  *                   type: string
- *                   example: doe
+ *                   example: Doe
  *                 email:
  *                   type: string
  *                   example: johndoe@example.com
@@ -73,7 +73,7 @@ router.post('/customers', async (req, res) => {
 
 /**
  * @swagger
- * /customers/{id}:
+ * /apis/customers/{id}:
  *   get:
  *     summary: Get a customer by ID.
  *     tags: [Customers]
@@ -129,7 +129,7 @@ router.get('/customers/:id', async (req, res) => {
 
 /**
  * @swagger
- * /customers:
+ * /apis/customers:
  *   get:
  *     summary: Retrieve a list of customers.
  *     tags: [Customers]
@@ -177,7 +177,7 @@ router.get('/customers', async (req, res) => {
 
 /**
  * @swagger
- * /customer/{id}:
+ * /apis/customers/{id}:
  *   put:
  *     summary: Update a customer by ID.
  *     tags: [Customers]
@@ -259,7 +259,7 @@ router.put('/customers/:id', async (req, res) => {
 
 /**
  * @swagger
- * /customer/{id}:
+ * /apis/customers/{id}:
  *   delete:
  *     summary: Delete a customer by ID.
  *     tags: [Customers]

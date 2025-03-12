@@ -25,7 +25,7 @@ const orderSchema = new mongoose.Schema({
       },
 
     // Lastly, we create the total field of the order to 
-    total: {type: Number, required: true}
+    total: {type: Number, required: false}
 })
 
 module.exports = mongoose.model('Order', orderSchema);

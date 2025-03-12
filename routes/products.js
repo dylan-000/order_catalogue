@@ -11,7 +11,7 @@ const Product = require('../models/Product');
 
 /**
  * @swagger
- * /product:
+ * /apis/products:
  *   post:
  *     summary: Create a new product in the database.
  *     tags: [Products]
@@ -29,7 +29,7 @@ const Product = require('../models/Product');
  *                 type: string
  *                 example: Kellogs
  *               price:
- *                 type: Number
+ *                 type: number
  *                 example: 5.99
  *     responses:
  *       201:
@@ -49,7 +49,7 @@ const Product = require('../models/Product');
  *                   type: string
  *                   example: Kellogs
  *                 price:
- *                   type: Number
+ *                   type: number
  *                   example: 5.99
  *       400:
  *         description: Bad request. Invalid input data.
@@ -73,7 +73,7 @@ router.post('/products', async (req, res) => {
 
 /**
  * @swagger
- * /product/{id}:
+ * /apis/products/{id}:
  *   get:
  *     summary: Get a product by ID.
  *     tags: [Products]
@@ -102,7 +102,7 @@ router.post('/products', async (req, res) => {
  *                   type: string
  *                   example: Kellogs
  *                 price:
- *                   type: Number
+ *                   type: number
  *                   example: 5.99
  *       404:
  *         description: Product not found.
@@ -121,7 +121,7 @@ router.get('/products/:id', async (req, res) => {
 
 /**
  * @swagger
- * /products:
+ * /apis/products:
  *   get:
  *     summary: Retrieve a list of products.
  *     tags: [Products]
@@ -161,7 +161,7 @@ router.get('/products', async (req, res) => {
 
 /**
  * @swagger
- * /product/{id}:
+ * /apis/products/{id}:
  *   put:
  *     summary: Update a product by ID.
  *     tags: [Products]
@@ -186,7 +186,7 @@ router.get('/products', async (req, res) => {
  *                 type: string
  *                 example: Kellogs
  *               price:
- *                 type: Number
+ *                 type: number
  *                 example: 5.99
  *     responses:
  *       200:
@@ -206,7 +206,7 @@ router.get('/products', async (req, res) => {
  *                   type: string
  *                   example: Kellogs
  *                 price:
- *                   type: Number
+ *                   type: number
  *                   example: 5.99
  *       400:
  *         description: Bad request. Invalid input data.
@@ -227,7 +227,7 @@ router.put('/products/:id', async (req, res) => {
 
 /**
  * @swagger
- * /product/{id}:
+ * /apis/products/{id}:
  *   delete:
  *     summary: Delete a product by ID.
  *     tags: [Products]
