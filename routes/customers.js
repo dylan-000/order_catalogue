@@ -11,7 +11,7 @@ const Customer = require('../models/Customer');
 
 /**
  * @swagger
- * /customer:
+ * /customers:
  *   post:
  *     summary: Create a new customer in the database.
  *     tags: [Customers]
@@ -73,7 +73,7 @@ router.post('/customers', async (req, res) => {
 
 /**
  * @swagger
- * /customer/{id}:
+ * /customers/{id}:
  *   get:
  *     summary: Get a customer by ID.
  *     tags: [Customers]
@@ -122,6 +122,54 @@ router.get('/customers/:id', async (req, res) => {
             return res.status(404).json({ message: 'Customer not found' });
         }
         res.status(200).json(customer);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+/**
+ * @swagger
+ * /customers:
+ *   get:
+ *     summary: Retrieve a list of customers.
+ *     tags: [Customers]
+ *     responses:
+ *       200:
+ *         description: A list of customers.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   _id:
+ *                     type: string
+ *                     example: 60c72b2f9b1d8e5a2c8f9e4b
+ *                   firstName:
+ *                     type: string
+ *                     example: John
+ *                   lastName:
+ *                     type: string
+ *                     example: Doe
+ *                   email:
+ *                     type: string
+ *                     example: johndoe@example.com
+ *       400:
+ *         description: Error retrieving customers.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Error message
+ */
+router.get('/customers', async (req, res) => {
+    try {
+        const customers = await Customer.find();
+        res.status(200).json(customers);
     } catch (err) {
         res.status(400).json({ message: err.message });
     }

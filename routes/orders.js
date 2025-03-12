@@ -174,6 +174,59 @@ router.get('/orders/:id', async (req, res) => {
 
 /**
  * @swagger
+ * /orders:
+ *   get:
+ *     summary: Retrieve all orders
+ *     description: Retrieve a list of all orders.
+ *     tags:
+ *       - Orders
+ *     responses:
+ *       200:
+ *         description: A list of orders.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   _id:
+ *                     type: string
+ *                     example: "65e2f3g4h5i6j7k8l9m0n1o2"
+ *                   customerID:
+ *                     type: string
+ *                     example: "65e0f0d9c3a2b6a8e7b1c3d4"
+ *                   products:
+ *                     type: array
+ *                     items:
+ *                       type: object
+ *                       properties:
+ *                         productID:
+ *                           type: string
+ *                           example: "65e1a2b3c4d5e6f7g8h9i0j1"
+ *                         quantity:
+ *                           type: integer
+ *                           example: 2
+ *                   status:
+ *                     type: string
+ *                     example: "pending"
+ *                   total:
+ *                     type: number
+ *                     example: 199.99
+ *       400:
+ *         description: Bad request. Invalid request.
+ */
+router.get('/orders', async (req, res) => {
+    try {
+        const orders = await Order.find();
+        res.status(200).json(orders);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+/**
+ * @swagger
  * /orders/{id}:
  *   put:
  *     summary: Update an existing order

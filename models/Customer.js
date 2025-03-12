@@ -7,4 +7,5 @@ const customerSchema = new mongoose.Schema({
     email: {type: String, required: true, unique: true},
 })
 
-module.exports = mongoose.model('Customer', customerSchema);
+const Customer = mongoose.model('Customer', customerSchema);
+module.exports = Customer;

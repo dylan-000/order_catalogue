@@ -121,6 +121,46 @@ router.get('/products/:id', async (req, res) => {
 
 /**
  * @swagger
+ * /products:
+ *   get:
+ *     summary: Retrieve a list of products.
+ *     tags: [Products]
+ *     responses:
+ *       200:
+ *         description: A list of products.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   _id:
+ *                     type: string
+ *                     example: 60c72b2f9b1d8t5a2c8f9e4b
+ *                   name:
+ *                     type: string
+ *                     example: Frosted Flakes
+ *                   manufacturer:
+ *                     type: string
+ *                     example: Kellogs
+ *                   price:
+ *                     type: number
+ *                     example: 5.99
+ *       400:
+ *         description: Bad request. Invalid input data.
+ */
+router.get('/products', async (req, res) => {
+    try {
+        const products = await Product.find();
+        res.status(200).json(products);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+/**
+ * @swagger
  * /product/{id}:
  *   put:
  *     summary: Update a product by ID.

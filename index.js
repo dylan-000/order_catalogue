@@ -55,9 +55,9 @@ db.once('open', () => {
 const customerRouter = require('./routes/customers');
 const productRouter = require('./routes/products');
 const orderRouter = require('./routes/orders');
-app.use('/products', productRouter);
-app.use('/customers', customerRouter);
-app.use('/orders', orderRouter);
+app.use('/apis', productRouter);
+app.use('/apis', customerRouter);
+app.use('/apis', orderRouter);
 
 // Start the server
 app.listen(PORT, () => {
