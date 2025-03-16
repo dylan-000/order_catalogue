@@ -48,14 +48,16 @@ const orderSchema = new mongoose.Schema({
       },
 
     // Lastly, we create the total field of the order to 
-    total: {type: Number, required: true}
+    total: {type: Number, required: false}
 })
 ```
 #### Routing
 All of the models implemented with MongoDB have corresponding CRUD APIs created with express, so each model has corresponing Create, Read, Update, and Delete operations.
 
+Note: All routes fall under the `/apis/` base path. Endpoints will fall under the `/apis/customers`,   `/apis/products`, and `/apis/orders` paths respectively.
+
 #### Documentation
 To document the APIs, swagger jsdoc comments were provided with the API implementations so that when the server runs, if the user navigates to the '/api-docs' section of the server, they can see all of the APIs and how they should be used.
 
 #### Testing
-Tests are yet to be implemented with postman.
+All tests were performed in PostMan, and were validated for their status codes.
