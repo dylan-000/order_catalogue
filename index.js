@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Swagger definition
 const swaggerOptions = {
@@ -40,7 +40,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(bodyParser.json());
 
 // MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/', {
+mongoose.connect("mongodb://mongodb:27017", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
